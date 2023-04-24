@@ -3,7 +3,12 @@ import * as ReactDOM from 'react-dom/client';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
-import Greeting from './components/Greeting'
+import Greeting from './components/Greeting';
+import LogInOut from './components/LogInOut';
+import CallAuth from './components/CallAuth';
+import ParentAuth from './components/ParentAuth';
+
+
 import theme from './theme';
 const config = require('./config');
 
@@ -18,6 +23,7 @@ root.render(
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <App />
-      <Greeting email={useremail}/>
+      <ParentAuth email={useremail}/>
+
   </ThemeProvider>,
 );
