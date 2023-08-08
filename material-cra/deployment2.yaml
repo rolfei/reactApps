@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: material-cra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: material-cra
+  template:
+    metadata:
+      labels:
+        app: material-cra
+    spec:
+      containers:
+      - name: material-cra
+        image: rolfeiacr.azurecr.io/material-cra:v4.3
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: my-acr-secret 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: material-cra
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: material-cra
