@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from 'react';
 
 
-export default function CallAuth({setDataParent}) {
+export default function CallAuth({}) {
     const [data, setData] = useState(null);
 
+    const fetchData = async () => {
+        const response = await fetch('http://4.158.32.9/auth/user', {
+            credentials: 'include' // fetch won't send cookies unless you set credentials
+        })
+        if (!response.ok) {
+            throw new Error('Data coud not be fetched!')
+        } else {
+            return response.json()
+        }
+    }
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:3001/user');
-                const result = await response.json();
-                setData(result);
-                setDataParent(result);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+        fetchData()
+            .then((res) => {
 
-        fetchData();
-
-    }, []); // Passing an empty array as the second argument
+                setData(res);
+            })
+            .catch((e) => {
+                console.log(e.message)
+            })
+    }, [])
 
 
 
 
-    const { email } = 'test';
+
+
+    const { email } = 'ian_e_rolfe@hotmail.com';
 
     let message = (email)
         ? `Hi, ${email}!`
@@ -32,9 +40,7 @@ export default function CallAuth({setDataParent}) {
 
         <div>
             {data ? (
-                <div>
-                    <p>Email: {data.user.email}</p>
-                </div>
+                <div><pre>{JSON.stringify(data, null, 2) }  EMAIL: </pre></div>
             ) : (
                 <p>Loading data...</p>
             )}

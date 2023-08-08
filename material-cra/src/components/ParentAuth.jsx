@@ -13,7 +13,7 @@ function ParentComponent() {
         <div>
             <h1>Parent Component</h1>
             <CallAuth setDataParent={setDataParent}/>
-            <LogInOut email={parentData} uri={`http://localhost:${config.serverPort}`}/>
+            <LogInOut email={parentData} uri={`http://4.158.32.9/auth`}/>
 
 
         </div>

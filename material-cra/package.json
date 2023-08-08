@@ -2,6 +2,7 @@
   "name": "material-cra",
   "version": "5.0.0",
   "private": true,
+  "homepage": "http://4.158.32.9/material-cra",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
